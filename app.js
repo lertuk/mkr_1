@@ -36,9 +36,8 @@ function savePlantsToStorage() {
 // Create & Update
 function handleFormSubmit(event) {
     event.preventDefault();
-    // Збираємо типізовані дані з форми
     const plantData = {
-        id: editingId ? editingId : crypto.randomUUID(), // Генеруємо унікальний ID, якщо це новий запис
+        id: editingId ? editingId : crypto.randomUUID(),
         name: nameInput.value.trim(),
         species: speciesInput.value.trim(),
         room: roomInput.value,
@@ -61,9 +60,9 @@ function handleFormSubmit(event) {
     form.reset();
     applyFilters();
 }
-// Read (Відображення)
+// Read
 function renderPlants(plantsToRender) {
-    plantsList.innerHTML = ''; // Очищаємо контейнер
+    plantsList.innerHTML = '';
     if (plantsToRender.length === 0) {
         plantsList.innerHTML = '<p>Не знайдено жодної рослини.</p>';
         return;
