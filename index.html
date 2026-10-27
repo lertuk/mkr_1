@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Облік домашніх рослин</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>🌿 Облік домашніх рослин</h1>
+        <nav>
+            <button id="btn-app" class="active">Додаток</button>
+            <button id="btn-condition">Умова завдання</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- СТОРІНКА З УМОВОЮ -->
+        <section id="condition-view" class="hidden">
+            <h2>Завдання 6. Облік домашніх рослин</h2>
+            <p>Розробіть односторінковий застосунок «Облік домашніх рослин» за допомогою HTML, CSS і TypeScript.</p>
+            <ul>
+                <li>Створювати записи, вказуючи назву, вид, кімнату, дату останнього поливу, частоту поливу та примітку.
+                </li>
+                <li>Переглядати список усіх записів.</li>
+                <li>Редагувати будь-який існуючий запис.</li>
+                <li>Видаляти записи після підтвердження.</li>
+                <li>Шукати рослини за назвою; фільтрувати за кімнатою.</li>
+            </ul>
+            <p>Усі дані потрібно зберігати в localStorage. Обов’язково реалізуйте всі CRUD-операції. Під час розробки
+                обов'язково використовуйте TypeScript-типізацію (без any).</p>
+        </section>
+
+        <!-- ДОДАТОК -->
+        <section id="app-view">
+            <div class="controls-panel">
+                <form id="plant-form" class="plant-form">
+                    <h3>Додати / Редагувати рослину</h3>
+                    <input type="hidden" id="plant-id">
+
+                    <label>Назва рослини: <input type="text" id="plant-name" required></label>
+                    <label>Вид: <input type="text" id="plant-species" required></label>
+                    <label>Кімната:
+                        <select id="plant-room" required>
+                            <option value="Спальня">Спальня</option>
+                            <option value="Вітальня">Вітальня</option>
+                            <option value="Кухня">Кухня</option>
+                            <option value="Коридор">Коридор</option>
+                            <option value="Балкон">Балкон</option>
+                        </select>
+                    </label>
+                    <label>Дата ост. поливу: <input type="date" id="plant-date" required></label>
+                    <label>Частота поливу (днів): <input type="number" min="1" id="plant-freq" required></label>
+                    <label>Примітка: <textarea id="plant-notes"></textarea></label>
+
+                    <button type="submit" id="submit-btn">Зберегти запис</button>
+                    <button type="button" id="cancel-btn" class="hidden">Скасувати</button>
+                </form>
+
+                <div class="filters">
+                    <h3>Пошук, фільтрація та сортування</h3>
+                    <input type="text" id="search-name" placeholder="Пошук за назвою або видом...">
+
+                    <div style="display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;">
+                        <label style="flex: 1; min-width: 120px;">Кімната:
+                            <select id="filter-room">
+                                <option value="">Всі кімнати</option>
+                                <option value="Спальня">Спальня</option>
+                                <option value="Вітальня">Вітальня</option>
+                                <option value="Кухня">Кухня</option>
+                                <option value="Коридор">Коридор</option>
+                                <option value="Балкон">Балкон</option>
+                            </select>
+                        </label>
+
+                        <label style="flex: 1; min-width: 120px;">Сортувати за:
+                            <select id="sort-plants">
+                                <option value="name-asc">А-Я (за назвою)</option>
+                                <option value="name-desc">Я-А (за назвою)</option>
+                                <option value="date-new">Спочатку нещодавно политі</option>
+                                <option value="date-old">Спочатку давно политі</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div id="plants-list" class="plants-grid">
+                <!-- Картки рослин будуть рендеритися тут -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Підключаємо скомпільований JS файл -->
+    <script src="app.js"></script>
+</body>
+
+</html>
